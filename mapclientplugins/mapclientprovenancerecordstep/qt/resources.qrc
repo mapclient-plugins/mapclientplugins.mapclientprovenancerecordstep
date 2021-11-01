@@ -1,0 +1,6 @@
+
+<RCC>
+  <qresource prefix="mapclientprovenancerecordstep">
+    <file>images/utility.png</file>
+  </qresource>
+</RCC>
