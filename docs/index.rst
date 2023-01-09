@@ -1,14 +1,25 @@
-MAP Client Plugin - MAP Client Provenance Record
-================================================
+MAP Client Provenance Record
+============================
 
 The **MAP Client Provenance Record** is MAP Client plugin for providing a Python dictionary containing the provenance record for the MAP Client instance currently in use.
 
-.. _fig-mcp-map-client-provenance-record-configured-step:
+Workflow Connections
+--------------------
 
-.. figure:: _images/configured-step.png
-   :alt: Configured step icon
+As shown in :numref:`fig-mcp-map-client-provenance-record-workflow-connections`, the **MAP Client Provenance Record** does not need any input.
 
-   A configured *MAP Client Provenance Record* step icon.
+It produces 1 output which may be piped to other workflow steps:
+
+1. A Python dictionary suitable for serialisation into JSON format. (Port: *http://physiomeproject.org/workflow/1.0/rdf-schema#dict*) 
+
+.. _fig-mcp-map-client-provenance-record-workflow-connections:
+
+.. figure:: _images/workflow-connections.png
+   :alt: MAP Client Provenance Record workflow connections.
+   :align: center
+   :figwidth: 75%
+
+   **MAP Client Provenance Record** workflow connections.
 
 Configure
 ---------
@@ -23,12 +34,3 @@ The provenance record is provided as a Python dict suitable for serialisation in
    :alt: Step configure dialog
 
    *MAP Client Provenance Record* step configuration dialog.
-
-Ports
------
-
-This plugin:
-
-* **provides**:
-
-  * *http://physiomeproject.org/workflow/1.0/rdf-schema#dict*
