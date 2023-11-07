@@ -6,7 +6,7 @@ import json
 from PySide6 import QtGui
 
 from mapclient.mountpoints.workflowstep import WorkflowStepMountPoint
-from mapclient.core.provenance import reproducibility_info
+from mapclient.core.provenance import reproducibility_info, describe_tag, remote_locations
 from mapclientplugins.mapclientprovenancerecordstep.configuredialog import ConfigureDialog
 
 
@@ -37,9 +37,18 @@ class MAPClientProvenanceRecordStep(WorkflowStepMountPoint):
         Make sure you call the _doneExecution() method when finished.  This method
         may be connected up to a button in a widget for example.
         """
-        # Put your execute step code here before calling the '_doneExecution' method.
-
-        self._portData0 = reproducibility_info()
+        info = reproducibility_info()
+        wm = self._main_window.model().workflowManager()
+        self._portData0 = {
+            'version': '0.1.0',
+            'id': 'map-client-provenance-record-report',
+            'workflow_info': {
+                'title': wm.title(),
+                'version': describe_tag(wm.location(), False),
+                'location': remote_locations(wm.location()),
+            },
+            'software_info': info
+        }
         self._doneExecution()
 
     def getPortData(self, index):
