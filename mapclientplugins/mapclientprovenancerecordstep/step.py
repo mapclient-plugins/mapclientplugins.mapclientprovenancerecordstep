@@ -38,6 +38,10 @@ class MAPClientProvenanceRecordStep(WorkflowStepMountPoint):
         may be connected up to a button in a widget for example.
         """
         info = reproducibility_info()
+        for key in ['id', 'version']:
+            if key in info:
+                del info[key]
+
         wm = self._main_window.model().workflowManager()
         self._portData0 = {
             'version': '0.1.0',
