@@ -3,7 +3,7 @@
 MAP Client Plugin
 """
 
-__version__ = '0.3.0'
+__version__ = '0.3.1'
 __author__ = 'Hugh Sorby'
 __stepname__ = 'MAP Client Provenance Record'
 __location__ = 'https://github.com/mapclient-plugins/mapclientplugins.mapclientprovenancerecordstep'
