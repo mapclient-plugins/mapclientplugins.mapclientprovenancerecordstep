@@ -32,21 +32,14 @@ class MAPClientProvenanceRecordStep(WorkflowStepMountPoint):
         self._config = {'identifier': 'ProvenanceRecord'}
 
     def execute(self):
-        """
-        Add your code here that will kick off the execution of the step.
-        Make sure you call the _doneExecution() method when finished.  This method
-        may be connected up to a button in a widget for example.
-        """
         info = reproducibility_info()
-        for key in ['id', 'version']:
-            if key in info:
-                del info[key]
 
         wm = self._main_window.model().workflowManager()
         self._portData0 = {
             'version': '0.1.0',
-            'id': 'map-client-provenance-record-report',
+            'id': 'map-client-provenance-report-record',
             'workflow_info': {
+                'id': 'map-client-provenance-workflow-record',
                 'title': wm.title(),
                 'version': describe_tag(wm.location(), False),
                 'location': remote_locations(wm.location()),
