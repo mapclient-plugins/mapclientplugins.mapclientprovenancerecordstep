@@ -31,20 +31,27 @@ class MAPClientProvenanceRecordStep(WorkflowStepMountPoint):
         # Config:
         self._config = {'identifier': 'ProvenanceRecord'}
 
-    def execute(self):
-        info = reproducibility_info()
-
+    def _prepare_workflow_info_record(self):
         wm = self._main_window.model().workflowManager()
-        self._portData0 = {
-            'version': '0.1.0',
-            'id': 'map-client-provenance-report-record',
-            'workflow_info': {
+        return {
                 'id': 'map-client-provenance-workflow-record',
-                'title': wm.title(),
-                'version': describe_tag(wm.location(), False),
-                'location': remote_locations(wm.location()),
-            },
-            'software_info': info
+                'version': '0.1.0',
+                'workflow': {
+                    'title': wm.title(),
+                    'version': describe_tag(wm.location(), False),
+                    'location': remote_locations(wm.location()),
+                }
+            }
+
+    def execute(self):
+        software_info = reproducibility_info()
+        workflow_info = self._prepare_workflow_info_record()
+
+        self._portData0 = {
+            'version': '0.2.0',
+            'id': 'map-client-provenance-report-record',
+            'workflow_info': workflow_info,
+            'software_info': software_info
         }
         self._doneExecution()
 
